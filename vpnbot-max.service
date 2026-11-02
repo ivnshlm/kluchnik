@@ -1,0 +1,19 @@
+[Unit]
+Description=VPN client bot in MAX (configs, status, self-service reissue)
+After=network-online.target awg-quick@awg0.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/vpnbot
+ExecStart=/usr/bin/python3 /opt/vpnbot/maxbot.py
+Restart=always
+RestartSec=5
+RuntimeDirectory=vpnbot
+RuntimeDirectoryMode=0700
+RuntimeDirectoryPreserve=yes
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,19 @@
+[Unit]
+Description=Admin Telegram bot (server status + AmneziaWG clients)
+After=network-online.target awg-quick@awg0.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/vpnbot
+ExecStart=/usr/bin/python3 /opt/vpnbot/bot.py
+Restart=always
+RestartSec=5
+RuntimeDirectory=vpnbot
+RuntimeDirectoryPreserve=yes
+RuntimeDirectoryMode=0700
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
